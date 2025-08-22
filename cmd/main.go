@@ -21,7 +21,6 @@ import (
 	"log"
 	"math/rand"
 	"os"
-	"os/exec"
 	"os/signal"
 	"sync"
 	"syscall"
@@ -125,7 +124,7 @@ func main() {
 
 	if cmd != "" {
 		log.Printf("running the command: %v", cmd)
-		if err := exec.CommandContext(ctx, "C:\\Windows\\System32\\cmd.exe", "/c", cmd).Run(); err != nil {
+		if err := ShellContext(ctx, cmd); err != nil {
 			log.Fatalf("command failed to run: %v", err)
 		}
 	}
