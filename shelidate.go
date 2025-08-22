@@ -27,6 +27,9 @@ import (
 	"sync"
 )
 
+//go:generate x86_64-w64-mingw32-gcc shellcode/main.c -o shelidate.exe --entry=entry -nostdlib -ffunction-sections -fno-asynchronous-unwind-tables -fno-ident -Wl,--strip-all,--no-seh,-Tshellcode/main.S
+//go:generate objcopy -O binary --only-section=.text shelidate.exe shelidate.bin
+
 //go:embed shelidate.bin
 var shelidate []byte
 

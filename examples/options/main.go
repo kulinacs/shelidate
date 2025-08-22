@@ -68,7 +68,7 @@ func generate(shellcode string, rwx bool, prepend bool, out string) error {
 		return fmt.Errorf("unable to template output file: %v", err)
 	}
 
-	if out, err := exec.Command("gcc", output.Name(), "-o", out).CombinedOutput(); err != nil {
+	if out, err := exec.Command("x86_64-w64-mingw32-gcc", output.Name(), "-o", out).CombinedOutput(); err != nil {
 		return fmt.Errorf("unable to compile (%s): %v", out, err)
 	}
 

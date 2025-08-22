@@ -44,7 +44,7 @@ func TestGenerate(t *testing.T) {
 				defer wg.Done()
 				<-sh.Recv
 			}()
-			if _, err := exec.Command(out).CombinedOutput(); err != nil {
+			if _, err := exec.Command("wine", out).CombinedOutput(); err != nil {
 				t.Fatalf("failed to exec payload: %v", err)
 			}
 			wg.Wait()
